@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+    WebDemo7.publics.MyClass.UserManage userManage = new WebDemo7.publics.MyClass.UserManage();
+    List<WebDemo7.Models.User> us = userManage.getAllUser();
+}
+
+<!DOCTYPE html>
+<link href="../publics/Ext/theme-triton/resources/theme-triton-all.css" rel="stylesheet" type="text/css">
+<link href="../publics/css/mycss.css" rel="stylesheet" type="text/css">
+<script src="../publics/Ext/ext-all.js"></script>
+<script>
+    function addUsersFunction() {
+        var win = new Ext.Window({
+            title: ' 用户注册',
+            icon:'../publics/Images/新增.png',
+            id: 'addUsers',
+            width: 400,
+            height: 300,
+            layout: 'form',
+            items:[
+                { xtype: 'textfield', id: 'username', fieldLabel: '用户名' },
+                { xtype: 'textfield', id: 'pass',inputType:'password', fieldLabel: '密码' },
+                { xtype: 'textfield', id: 'email', fieldLabel: '邮箱' }
+                ],
+            buttons: [
+                { text: '注册', icon: '../publics/Images/保存.png'},
+                { text: '关闭', icon: '../publics/Images/打开.png'}
+            ]
+        });
+        win.show();
+    }
+</script>
+@*<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <input type="button" value="添加用户" />
+        <div id="title">
+            <table width="100%" border="0">
+                <tr>
+                    <td>用户名</td>
+                    <td>密码</td>
+                    <td>邮箱</td>
+                </tr>
+            </table>
+        </div>
+        <div id="info">
+            @foreach(WebDemo7.Models.User user in us)
+            {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.PassWord</td>
+                <td>@user.Email</td>
+            </tr>
+            }
+        </div>
+    </body>
+    </html>*@
+
+<table border="1" cellpadding="0" cellspacing="0" class="table table-striped">
+    <caption>用户列表</caption>
+    <thead>
+        <tr>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>邮箱</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (WebDemo7.Models.User user in us)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.PassWord</td>
+                <td>@user.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+<input type="button" value="添加用户" onclick="addUsersFunction()" />

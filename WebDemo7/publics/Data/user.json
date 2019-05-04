@@ -1,0 +1,17 @@
+{
+    "total":12,
+    "result":[
+        {"id":1,"username":"wang1","realname":"王1","hiredate":"2018-01-01","phone":"13456789045","state":true},
+        {"id":2,"username":"wang2","realname":"王2","hiredate":"2018-01-02","phone":"13456789045","state":true},
+        {"id":3,"username":"wang3","realname":"王3","hiredate":"2018-01-03","phone":"13456789045","state":false},
+        {"id":4,"username":"wang4","realname":"王4","hiredate":"2018-01-04","phone":"13456789045","state":true},
+        {"id":5,"username":"wang5","realname":"王5","hiredate":"2018-01-05","phone":"13456789045","state":true},
+        {"id":6,"username":"wang6","realname":"王6","hiredate":"2018-01-06","phone":"13456789045","state":true},
+        {"id":7,"username":"wang7","realname":"王7","hiredate":"2018-01-07","phone":"13456789045","state":false},
+        {"id":8,"username":"wang8","realname":"王8","hiredate":"2018-01-08","phone":"13456789045","state":true},
+        {"id":9,"username":"wang9","realname":"王9","hiredate":"2018-01-09","phone":"13456789045","state":true},
+        {"id":10,"username":"wang10","realname":"王10","hiredate":"2018-01-10","phone":"13456789045","state":false},
+        {"id":11,"username":"wang11","realname":"王11","hiredate":"2018-01-11","phone":"13456789045","state":true},
+        {"id":12,"username":"wang12","realname":"王12","hiredate":"2018-01-12","phone":"13456789045","state":true}
+    ]
+}

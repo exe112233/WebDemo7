@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <link href="Ext/theme-triton/resources/theme-triton-all.css" rel="stylesheet" type="text/css">
+   <link href="css/mycss.css" rel="stylesheet" type="text/css">
+   <script src="Ext/ext-all.js"></script>
+   <title>viewport</title>
+   <script>
+      Ext.onReady(function () {
+         Ext.create('Ext.container.Viewport', {
+            frame: true,
+            layout: 'border',
+            renderTo: Ext.getBody(),
+            items: [{
+               title: 'header',
+               region: 'north',     
+               height: 100,
+               html:'上边部分/北边'
+            },{
+               title: 'footer',
+               region: 'south', 
+               height: 100,
+               html:'下边部分,南边'
+            }, {
+               title: 'West',
+               region: 'west',
+               width: 200,
+               collapsible: true,   //允许展开收缩
+               html:'左边/西边'
+            }, {
+               title: 'Center',
+               region: 'center',
+               html:'中间部分'
+            }]
+         });
+      });
+   </script>
+</head>
+
+<body>
+</body>
+
+</html>
