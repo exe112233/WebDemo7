@@ -15,7 +15,6 @@ namespace WebDemo7.Models
     /// </summary>
     public class User
     {
-        public int UserId { set; get; }
         public string UserName { set; get; }
         public string PassWord { set; get; }
         public string Email { set; get; }

@@ -21,5 +21,11 @@ namespace WebDemo7.publics.MyClass
             DataSet ds = mysql.SelectSqlReturnDataSet(sql);
             return TransformToList.ToList<User>(ds);
         }
+
+        public int addUser(User user)
+        {
+            string sql = "INSERT INTO td_user (UserName,PassWord,Email,Role) VALUES ('"+ user.UserName + "','" + user.PassWord + "','" + user.Email + "','" + user.Role + "')";
+            return mysql.ExcuteSqlReturnInt(sql);
+        }
     }
 }

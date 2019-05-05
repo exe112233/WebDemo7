@@ -16,5 +16,23 @@ namespace WebDemo7.Controllers
         {
             return View();
         }
+
+        public ActionResult AddUser()
+        {
+            User user = new User();
+            UserManage userManage = new UserManage(); 
+            user.UserName = Request.Params["userName"];
+            user.PassWord = Request.Params["userPass"];
+            user.Email = Request.Params["userEmail"];
+            user.Role = "5";
+            if(userManage.addUser(user) > 0)
+            {
+                return Content("true");
+            }
+            else
+            {
+                return Content("false");
+            }
+        }
     }    
 }

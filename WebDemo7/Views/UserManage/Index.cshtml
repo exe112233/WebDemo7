@@ -13,20 +13,68 @@
     function addUsersFunction() {
         var win = new Ext.Window({
             title: ' 用户注册',
-            icon:'../publics/Images/新增.png',
+            icon: '../publics/Images/新增.png',
             id: 'addUsers',
             width: 400,
             height: 300,
             layout: 'form',
-            items:[
-                { xtype: 'textfield', id: 'username', fieldLabel: '用户名' },
-                { xtype: 'textfield', id: 'pass',inputType:'password', fieldLabel: '密码' },
-                { xtype: 'textfield', id: 'email', fieldLabel: '邮箱' }
-                ],
+            items: [
+                {
+                    xtype: 'textfield',
+                    id: 'username',
+                    fieldLabel: '用户名'
+                }, {
+                    xtype: 'textfield',
+                    id: 'pass',
+                    inputType: 'password',
+                    fieldLabel: '密码'
+                }, {
+                    xtype: 'textfield',
+                    id: 'email',
+                    fieldLabel: '邮箱',
+                    vtype: 'email'
+                }],
             buttons: [
-                { text: '注册', icon: '../publics/Images/保存.png'},
-                { text: '关闭', icon: '../publics/Images/打开.png'}
-            ]
+                {
+                    text: '注册',
+                    icon: '../publics/Images/保存.png',
+                    handler: function () {
+                        if (Ext.getCmp('username').getValue() == '') {
+                            alert('用户名不能为空');
+                            return;
+                        }
+                        if (Ext.getCmp('pass').getValue() == '') {
+                            alert('密码不能为空');
+                            return;
+                        }
+                        if (Ext.getCmp('email').getValue() == '') {
+                            alert('邮箱不能为空');
+                            return;
+                        }
+                        Ext.Ajax.request({
+                            url: 'AddUser',
+                            method:'POST',
+                            success: function (res) {
+                                var obj = Ext.decode(res.responseText);
+                                alert(obj);
+                            },
+                            failure: function () {
+                                alert('添加失败!');
+                            },
+                            params: {
+                                userName: Ext.getCmp('username').getValue(),
+                                userPass: Ext.getCmp('pass').getValue(),
+                                userEmail: Ext.getCmp('email').getValue()
+                            }
+                        });
+                    }
+                }, {
+                    text: '关闭',
+                    icon: '../publics/Images/打开.png',
+                    handler: function () {
+                    win.close();
+                }
+                }]
         });
         win.show();
     }

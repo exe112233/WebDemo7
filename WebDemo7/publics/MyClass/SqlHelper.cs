@@ -19,7 +19,7 @@ namespace WebDemo7.publics.MyClass
         {
             get
             {
-                return "Data Source=.;Initial Catalog = db_news;User ID = sa;password = Aa312313;";
+                return "Data Source=.;Initial Catalog = Test;User ID = sa;password = Aa312313;";
 
             }
         }
