@@ -1,0 +1,163 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="../publics/Ext/theme-triton/resources/theme-triton-all.css" rel="stylesheet" type="text/css">
+    <link href="../publics/css/mycss.css" rel="stylesheet" type="text/css">
+    <script src="../publics/Ext/ext-all.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserManageGrig</title>
+    <script>
+        Ext.onReady(function () {
+            var ds = new Ext.data.Store({
+                fields: ['UserId', 'UserName', 'PassWord', 'Email'],
+                proxy: {
+                    type: 'ajax',
+                    url: 'GetAllUser',
+                    reader: {
+                        type: 'json',//调用的是Ext.data.reader.Json解析器
+                        totalProperty: 'totalCount',
+                        root: 'ds'
+                    }
+                },
+                autoLoad: true
+            });
+
+            new Ext.grid.Panel({
+                title: '用户管理',
+                id:'userManageGrid',
+                width: 800,
+                height: 600,
+                renderTo: Ext.getBody(),
+                frame: true,
+                tbar: [{
+                    text: '添加用户',
+                    icon: '../publics/Images/mails.png',
+                    handler: function () {
+                        var win = new Ext.Window({
+                            title: ' 用户注册',
+                            icon: '../publics/Images/新增.png',
+                            id: 'addUsers',
+                            width: 400,
+                            height: 300,
+                            layout: 'form',
+                            items: [
+                                {
+                                    xtype: 'textfield',
+                                    id: 'username',
+                                    fieldLabel: '用户名'
+                                }, {
+                                    xtype: 'textfield',
+                                    id: 'pass',
+                                    inputType: 'password',
+                                    fieldLabel: '密码'
+                                }, {
+                                    xtype: 'textfield',
+                                    id: 'email',
+                                    fieldLabel: '邮箱',
+                                    vtype: 'email'
+                                }],
+                            buttons: [
+                                {
+                                    text: '注册',
+                                    icon: '../publics/Images/保存.png',
+                                    handler: function () {
+                                        if (Ext.getCmp('username').getValue() == '') {
+                                            alert('用户名不能为空');
+                                            return;
+                                        }
+                                        if (Ext.getCmp('pass').getValue() == '') {
+                                            alert('密码不能为空');
+                                            return;
+                                        }
+                                        if (Ext.getCmp('email').getValue() == '') {
+                                            alert('邮箱不能为空');
+                                            return;
+                                        }
+                                        Ext.Ajax.request({
+                                            url: 'AddUser',
+                                            method: 'POST',
+                                            success: function (res) {
+                                                var obj = Ext.decode(res.responseText);
+                                                if (obj = 'true') {
+                                                    alert('添加成功!');
+                                                    win.close();
+                                                    //重新加载数据
+                                                    Ext.getCmp('userManageGrid').getStore().reload();
+                                                }
+                                            },
+                                            failure: function () {
+                                                alert('添加失败!');
+                                            },
+                                            params: {
+                                                userName: Ext.getCmp('username').getValue(),
+                                                userPass: Ext.getCmp('pass').getValue(),
+                                                userEmail: Ext.getCmp('email').getValue()
+                                            }
+                                        });
+                                    }
+                                }, {
+                                    text: '关闭',
+                                    icon: '../publics/Images/打开.png',
+                                    handler: function () {
+                                        win.close();
+                                    }
+                                }]
+                        });
+                        win.show();
+                    }
+                }],
+                border: false,
+                columns: [{
+                    header: '序号',
+                    sortable: true,
+                    dataIndex: 'UserId'
+                }, {
+                    header: '用户名',
+                    sortable: true,
+                    dataIndex: 'UserName'
+                }, {
+                    header: '密码',
+                    sortable: true,
+                    dataIndex: 'PassWord'
+                }, {
+                    header: '邮箱',
+                    sortable: true,
+                    dataIndex: 'Email'
+                }, {
+                    header: '操作',
+                    xtype: 'actioncolumn',
+                    items: [{
+                        icon: '../publics/Images/lock.png',
+                        handler: function () {
+                            alert('修改')
+                        }
+                    }, {
+                        icon: '../publics/Images/checklist.png',
+                        handler: function () {
+                            alert('删除')
+                        }
+                    }]
+                }],
+                store: ds,
+                bbar: new Ext.toolbar.Paging({
+                    pageSize: 20,
+                    store: ds,
+                    displayInfo: true,
+                    displayMsg: '当前显示第{0}条到第{1}条记录,总共有{2}条记录',
+                    emptyMsg: '无记录'
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>

@@ -11,8 +11,14 @@ namespace WebDemo7.Controllers
 {
     public class UserManageController : Controller
     {
+        UserManage userManage = new UserManage();
         // GET: UserManage
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult UserManageGrid()
         {
             return View();
         }
@@ -20,12 +26,12 @@ namespace WebDemo7.Controllers
         public ActionResult AddUser()
         {
             User user = new User();
-            UserManage userManage = new UserManage(); 
+            
             user.UserName = Request.Params["userName"];
             user.PassWord = Request.Params["userPass"];
             user.Email = Request.Params["userEmail"];
             user.Role = "5";
-            if(userManage.addUser(user) > 0)
+            if(userManage.AddUser(user) > 0)
             {
                 return Content("true");
             }
@@ -33,6 +39,12 @@ namespace WebDemo7.Controllers
             {
                 return Content("false");
             }
+        }
+
+        public ActionResult GetAllUser()
+        {
+            string json = userManage.GetAllUserB();
+            return Content(json,"text/html"); 
         }
     }    
 }

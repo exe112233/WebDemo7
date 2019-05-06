@@ -6240,6 +6240,7 @@
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="publics\MyClass\ConvertJson.cs" />
     <Compile Include="publics\MyClass\SqlHelper.cs" />
     <Compile Include="publics\MyClass\TransformToList.cs" />
     <Compile Include="publics\MyClass\UserManage.cs" />
@@ -6376,6 +6377,7 @@
     <Content Include="publics\Ext\theme-triton\theme-triton-all-debug.scss" />
     <Content Include="publics\Ext\theme-triton\theme-triton-all-rtl-debug.scss" />
     <Content Include="Views\UserManage\Index.cshtml" />
+    <Content Include="Views\UserManage\UserManageGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
